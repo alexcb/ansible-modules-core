@@ -1217,7 +1217,7 @@ class Container(DockerBaseClass):
             expected_env=(config.get('Env') or []),
             expected_entrypoint=config.get('Entrypoint'),
             expected_etc_hosts=host_config['ExtraHosts'],
-            expected_exposed=[re.sub(r'/.+$', '', p) for p in config.get('ExposedPorts', dict()).keys()],
+            expected_exposed=[re.sub(r'/.+$', '', p) for p in (config.get('ExposedPorts') or {}).keys()],
             groups=host_config.get('GroupAdd'),
             ipc_mode=host_config.get("IpcMode"),
             labels=config.get('Labels'),
